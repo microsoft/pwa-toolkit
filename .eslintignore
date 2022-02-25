@@ -1,0 +1,3 @@
+examples/api/src/graphql/types.ts
+examples/client/src/vite-env.d.ts
+packages/*/dist/**

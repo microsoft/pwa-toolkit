@@ -1,0 +1,65 @@
+{
+  "name": "@pwa-toolkit/vite-config",
+  "version": "0.0.1",
+  "description": "PWA configs",
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": "Derek Worthen <deworthe@microsoft.com>",
+  "contributors": [
+    "Derek Worthen <deworthe@microsoft.com>",
+    "<gaudyb@microsoft.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microsoft/pwa-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/microsoft/pwa-toolkit/issues"
+  },
+  "homepage": "https://github.com/microsoft/pwa-toolkit#readme",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "shx rm -rf ./dist",
+    "typecheck": "tsc --noEmit",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:cjs": "esbuild ./src/index.ts --sourcemap --bundle --format=cjs --platform=node --target=node16 --outfile=./dist/cjs/index.cjs",
+    "build:esm": "esbuild ./src/**/*.ts --sourcemap --format=esm --platform=node --target=node16 --outdir=./dist/esm",
+    "build": "NODE_ENV=production run-p build:types build:cjs build:esm",
+    "start": "NODE_ENV=development run-p \"build:types -w\"  \"build:cjs --watch\" \"build:esm --watch\"",
+    "start:prod": "NODE_ENV=production run-p \"build:types -w\" \"build:cjs --watch\" \"build:esm --watch\""
+  },
+  "keywords": [
+    "PWA",
+    "Toolkit"
+  ],
+  "dependencies": {
+    "deepmerge": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/deepmerge": "^2.2.0",
+    "esbuild": "^0.14.23",
+    "npm-run-all": "^4.1.5",
+    "shx": "^0.3.3",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5",
+    "vite-plugin-pwa": "^0.11.12"
+  },
+  "peerDependencies": {
+    "vite-plugin-pwa": "^0.11.12"
+  }
+}

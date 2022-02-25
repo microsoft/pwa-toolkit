@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "./src"
+  ],
+  "compilerOptions": {
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+      "WebWorker",
+    ],
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": [
+      "vite-plugin-pwa/client"
+    ]
+  },
+}
