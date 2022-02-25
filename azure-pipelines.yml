@@ -1,5 +1,8 @@
 trigger:
-- main
+  - main
+
+variables:
+  Codeql.Enabled: true
 
 pool:
   vmImage: windows-latest

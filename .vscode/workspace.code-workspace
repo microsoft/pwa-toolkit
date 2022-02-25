@@ -1,0 +1,40 @@
+{
+  "folders": [
+    {
+      "name": "🚀 api",
+      "path": "..\\examples\\api"
+    },
+    {
+      "name": "🚀 client",
+      "path": "..\\examples\\client"
+    },
+    {
+      "name": "📦 @pwa-toolkit/core",
+      "path": "..\\packages\\core"
+    },
+    {
+      "name": "📦 @pwa-toolkit/vite-config",
+      "path": "..\\packages\\vite-config"
+    },
+    {
+      "name": "✨ pwa-toolkit-monorepo",
+      "path": ".."
+    }
+  ],
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "files.eol": "\n",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "javascript.preferences.importModuleSpecifier": "shortest",
+    "javascript.preferences.importModuleSpecifierEnding": "auto",
+    "typescript.preferences.importModuleSpecifier": "shortest",
+    "typescript.preferences.importModuleSpecifierEnding": "auto",
+  }
+}

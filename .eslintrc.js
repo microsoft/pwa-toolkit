@@ -1,6 +1,8 @@
 module.exports = {
-  plugins: ['simple-import-sort', 'react-hooks'],
+  root: true,
+  plugins: ['import', 'simple-import-sort', 'react-hooks'],
   extends: ['standard-with-typescript', 'eslint-config-prettier'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
   },
