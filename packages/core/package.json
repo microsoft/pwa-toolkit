@@ -1,6 +1,6 @@
 {
   "name": "@pwa-toolkit/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "PWA Toolkit",
   "type": "module",
   "types": "./dist/types/index.d.ts",
