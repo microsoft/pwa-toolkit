@@ -6,6 +6,9 @@
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
+  "publishConfig": {
+    "types": "./dist/types/vite-config.d.ts"
+  },
   "exports": {
     ".": {
       "require": "./dist/cjs/index.cjs",
@@ -36,10 +39,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "shx rm -rf ./dist",
     "typecheck": "tsc --noEmit",
+    "apiReport": "api-extractor run",
+    "apiReport:check": "run-s build:types apiReport",
+    "build:apiReport": "run-s build:types \"apiReport --local\"",
     "build:types": "tsc --emitDeclarationOnly",
     "build:cjs": "esbuild ./src/index.ts --sourcemap --bundle --format=cjs --platform=node --target=node16 --outfile=./dist/cjs/index.cjs",
     "build:esm": "esbuild ./src/**/*.ts --sourcemap --format=esm --platform=node --target=node16 --outdir=./dist/esm",
-    "build": "NODE_ENV=production run-p build:types build:cjs build:esm",
+    "build": "NODE_ENV=production run-p build:apiReport build:cjs build:esm",
     "start": "NODE_ENV=development run-p \"build:types -w\"  \"build:cjs --watch\" \"build:esm --watch\"",
     "start:prod": "NODE_ENV=production run-p \"build:types -w\" \"build:cjs --watch\" \"build:esm --watch\""
   },
@@ -51,6 +57,7 @@
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.19.4",
     "@types/deepmerge": "^2.2.0",
     "esbuild": "^0.14.23",
     "npm-run-all": "^4.1.5",

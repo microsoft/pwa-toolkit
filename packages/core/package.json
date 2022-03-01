@@ -6,6 +6,9 @@
   "types": "./dist/types/index.d.ts",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
+  "publishConfig": {
+    "types": "./dist/types/core.d.ts"
+  },
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
@@ -36,12 +39,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "shx rm -rf ./dist",
     "typecheck": "tsc --noEmit",
+    "apiReport": "api-extractor run",
+    "apiReport:check": "run-s build:types apiReport",
+    "build:apiReport": "run-s build:types \"apiReport --local\"",
     "build:types": "tsc --emitDeclarationOnly",
     "build:cjs": "esbuild ./src/index.ts --sourcemap --bundle --format=cjs --target=es2021 --outfile=./dist/cjs/index.cjs",
     "build:esm": "esbuild ./src/**/*.ts --sourcemap --format=esm --target=es2021 --outdir=./dist/esm",
-    "build": "NODE_ENV=production run-p build:types build:esm",
-    "start": "NODE_ENV=development run-p \"build:types -w\" \"build:esm --watch\"",
-    "start:prod": "NODE_ENV=production run-p \"build:types -w\" \"build:esm --watch\""
+    "build": "NODE_ENV=production run-p build:apiReport build:esm build:cjs",
+    "start": "NODE_ENV=development run-p \"build:types -w\" \"build:esm --watch\" \"build:cjs --watch\"",
+    "start:prod": "NODE_ENV=production run-p \"build:types -w\" \"build:esm --watch\" \"build:cjs --watch\""
   },
   "keywords": [
     "PWA",
@@ -56,6 +62,7 @@
     "workbox-strategies": "^6.4.2"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "^7.19.4",
     "esbuild": "^0.14.23",
     "npm-run-all": "^4.1.5",
     "shx": "^0.3.3",

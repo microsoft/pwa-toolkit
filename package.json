@@ -26,17 +26,24 @@
     "start": "yarn workspaces foreach -Aipv run start",
     "start:prod": "yarn workspaces foreach -Aipv run start:prod",
     "typecheck": "yarn workspaces foreach -Aipv run typecheck",
-    "format:check": "prettier --check \"./packages/*/src/**/*.{js,jsx,ts,tsx}\"",
-    "format": "prettier --write \"./packages/*/src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:check": "eslint \"./packages/*/src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "eslint --fix \"./packages/*/src/**/*.{js,jsx,ts,tsx}\"",
-    "git:precommit": "lint-staged"
+    "apiReport:check": "yarn workspaces foreach -Aipv run apiReport:check",
+    "format:check": "prettier --check \"./{packages,examples}/*/src/**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --write \"./{packages,examples}/*/src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:check": "eslint \"./{packages,examples}/*/src/**/*.{js,jsx,ts,tsx}\"",
+    "lint": "eslint --fix \"./{packages,examples}/*/src/**/*.{js,jsx,ts,tsx}\"",
+    "git:precommit": "lint-staged",
+    "ci": "npm-run-all apiReport:check build --parallel typecheck lint:check format:check",
+    "release:changeset": "changeset",
+    "release:version": "changeset version",
+    "release:publish": "changeset publish --otp $NPM_TOKEN"
   },
   "workspaces": [
     "packages/*",
     "examples/*"
   ],
   "devDependencies": {
+    "@changesets/changelog-git": "^0.1.10",
+    "@changesets/cli": "^2.21.0",
     "@types/node": "^16.0.0",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",

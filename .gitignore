@@ -1,6 +1,7 @@
 node_modules
 packages/*/dist
 examples/*/dist
+packages/*/apiReportTemp
 *.env
 .env.*
 *.log
