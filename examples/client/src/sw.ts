@@ -35,7 +35,7 @@ cacheRequests({
   cacheName: 'Runtime GET Requests',
   cacheStrategy: 'NetworkFirst',
   routes: [
-    /https:\/\/spoppe-b.azureedge.net\/*/,
+    /https:\/\/spoppe-b\.azureedge\.net\/*/,
     new RegExp(`${config.restApi}/.*`),
   ],
 })

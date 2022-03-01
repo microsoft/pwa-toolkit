@@ -6,9 +6,6 @@
   "types": "./dist/types/index.d.ts",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
-  "publishConfig": {
-    "types": "./dist/types/core.d.ts"
-  },
   "exports": {
     ".": {
       "import": "./dist/esm/index.js",
@@ -55,7 +52,6 @@
   ],
   "dependencies": {
     "idb": "^7.0.0",
-    "idb-keyval": "^6.1.0",
     "workbox-core": "^6.4.2",
     "workbox-precaching": "^6.4.2",
     "workbox-routing": "^6.4.2",

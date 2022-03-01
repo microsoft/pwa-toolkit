@@ -17,27 +17,7 @@ export const tokenProvider: TokenProvider<API.User> =
     return null
   }
 
-const applicationCache: API.Application | null = null
-
 async function fetchApplicationCertificate(): Promise<jose.JWK> {
-  if (applicationCache !== null) {
-    return applicationCache.publicKey! as jose.JWK
-  }
-  // const applicationQuery = gql`
-  //   query Application {
-  //     application {
-  //       name
-  //       publicKey {
-  //         kty
-  //         e
-  //         n
-  //       }
-  //     }
-  //   }
-  // `
-  // const { application } = await request<{
-  //   application: API.Application
-  // }>(endpoint, applicationQuery)
   const res = await fetch(`${config.restApi}/application`, {
     mode: 'cors',
     credentials: 'include',
@@ -46,7 +26,6 @@ async function fetchApplicationCertificate(): Promise<jose.JWK> {
     },
   })
   const { data }: { data: API.Application } = await res.json()
-  // applicationCache = data
   return data.publicKey! as jose.JWK
 }
 
@@ -62,12 +41,7 @@ async function parseAndVerifyAuthToken(
   }
 
   const key = await jose.importJWK(publicKey, 'RS256')
-  // const { payload } = await jose.jwtVerify(token, key, {
-  //   algorithms: ['RS256'],
-  //   issuer: 'Notatki',
-  //   audience: 'Notatki',
-  // })
-  // Only verify the signature.
+  // Only verify the signature
   const { payload } = await jose.compactVerify(token, key)
 
   return JSON.parse(new TextDecoder().decode(payload)) as API.User

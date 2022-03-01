@@ -9,6 +9,7 @@ module.exports = {
   rules: {
     'sort-imports': 'off',
     'import/order': 'off',
+    'import/extensions': ['error', 'ignorePackages'],
     'simple-import-sort/imports': 'error',
     'no-void': 'off',
     '@typescript-eslint/space-before-function-paren': 'off',

@@ -6,9 +6,6 @@
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
-  "publishConfig": {
-    "types": "./dist/types/vite-config.d.ts"
-  },
   "exports": {
     ".": {
       "require": "./dist/cjs/index.cjs",
