@@ -1,7 +1,7 @@
 {
   "name": "@examples/client",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "clean": "shx rm -rf ./dist/",
     "typecheck": "tsc --noEmit",
@@ -14,8 +14,8 @@
     "@examples/api": "workspace:^1.0.0",
     "@fluentui/font-icons-mdl2": "^8.1.20",
     "@fluentui/react": "^8.49.3",
-    "@pwa-toolkit/core": "workspace:^0.0.1",
-    "@pwa-toolkit/vite-config": "workspace:^0.0.1",
+    "@pwa-toolkit/core": "workspace:^0.1.0",
+    "@pwa-toolkit/vite-config": "workspace:^0.1.0",
     "classnames": "^2.3.1",
     "graphql": "^15.0.0",
     "graphql-request": "^3.7.0",
