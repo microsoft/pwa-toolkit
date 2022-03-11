@@ -18,6 +18,8 @@ export class IndexedDBStore {
         db.createObjectStore(tableName)
       },
     })
+    this.values = this.values.bind(this)
+    this.entries = this.entries.bind(this)
   }
 
   public get = async (key: string): Promise<string | undefined> => {
@@ -28,7 +30,7 @@ export class IndexedDBStore {
     await (await this.dbPromise).put(this.tableName, value, key)
   }
 
-  public del = async (key: string): Promise<void> => {
+  public delete = async (key: string): Promise<void> => {
     await (await this.dbPromise).delete(this.tableName, key)
   }
 
@@ -38,5 +40,25 @@ export class IndexedDBStore {
 
   public keys = async (): Promise<string[]> => {
     return (await (await this.dbPromise).getAllKeys(this.tableName)) as string[]
+  }
+
+  public async *values(): AsyncGenerator<string, void, void> {
+    const keys = [...(await this.keys())]
+    for (const key of keys) {
+      const val = await this.get(key)
+      if (val !== undefined) {
+        yield val
+      }
+    }
+  }
+
+  public async *entries(): AsyncGenerator<[string, string], void, void> {
+    const keys = [...(await this.keys())]
+    for (const key of keys) {
+      const val = await this.get(key)
+      if (val !== undefined) {
+        yield [key, val]
+      }
+    }
   }
 }

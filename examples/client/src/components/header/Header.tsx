@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import { AuthenticatedTemplate, useAuthProviderContext } from '../authProvider'
 import Flex from '../flexbox/flexbox'
+import { Online } from '../online'
 
 const Container = styled.div<{ theme: Theme }>`
   background: ${({ theme }: { theme: Theme }) => theme.palette.themePrimary};
@@ -59,18 +60,23 @@ const Header: FC = function Header() {
 
   return (
     <Container theme={theme}>
-      <Flex align="center">
-        <Flex style={{ flexGrow: 1 }}>
-          <StyledLink theme={theme} to="/helloWorld">
-            Hello World
-          </StyledLink>
-          <StyledLink theme={theme} to="/">
-            Notes
-          </StyledLink>
-          <StyledLink theme={theme} to="/create-note">
-            Create Note
-          </StyledLink>
-        </Flex>
+      <Flex align="center" justify="space-between">
+        <Flex.Box>
+          <Flex>
+            <StyledLink theme={theme} to="/helloWorld">
+              Hello World
+            </StyledLink>
+            <StyledLink theme={theme} to="/">
+              Notes
+            </StyledLink>
+            <StyledLink theme={theme} to="/create-note">
+              Create Note
+            </StyledLink>
+          </Flex>
+        </Flex.Box>
+        <Flex.Box>
+          <Online />
+        </Flex.Box>
         <Flex.Box>
           <AuthenticatedTemplate>
             <StyledSpan theme={theme}>

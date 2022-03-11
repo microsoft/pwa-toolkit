@@ -4,11 +4,11 @@ export function urlEncodeRecord(record: Record<string, unknown>): string {
   const flattenObj = flattenRecord(record)
 
   return encodeURI(
-    Object.entries(flattenObj)
-      .reduce((acc, [key, value]) => {
-        acc += `${acc === '' ? '?' : '&'}${key}=${value}`
+    Object.keys(flattenObj)
+      .sort()
+      .reduce((acc, key) => {
+        acc += `${acc === '' ? '?' : '&'}${key}=${flattenObj[key]}`
         return acc
-      }, '')
-      .replace(/\s+/g, ' '),
+      }, ''),
   )
 }

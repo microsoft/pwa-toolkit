@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 
-import { AuthProviderContext } from './AuthProviderContext'
-import { AuthProviderConext } from './types'
+import { AuthContext } from './AuthProviderContext'
+import { AuthProviderContext } from './types'
 
-export function useAuthProviderContext<T = any>(): AuthProviderConext<T> {
-  return useContext(AuthProviderContext)
+export function useAuthProviderContext<T = any>(): AuthProviderContext<T> {
+  return useContext(AuthContext)
 }

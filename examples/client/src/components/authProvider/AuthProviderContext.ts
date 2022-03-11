@@ -1,8 +1,8 @@
 import { createContext } from 'react'
 
-import { AuthProviderConext } from './types'
+import { AuthProviderContext } from './types'
 
-export const authProviderContextDefaultValue: AuthProviderConext<any> = [
+export const authProviderContextDefaultValue: AuthProviderContext<any> = [
   {
     loading: true,
     authenticated: false,
@@ -10,6 +10,6 @@ export const authProviderContextDefaultValue: AuthProviderConext<any> = [
   () => {},
 ]
 
-export const AuthProviderContext = createContext<AuthProviderConext<any>>(
+export const AuthContext = createContext<AuthProviderContext<any>>(
   authProviderContextDefaultValue,
 )
