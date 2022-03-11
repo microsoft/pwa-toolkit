@@ -21,6 +21,17 @@ module.exports = {
     '@typescript-eslint/no-invalid-void-type': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'header/header': [2, 'header.txt'],
+    'header/header': [
+      2,
+      'block',
+      [
+        '!',
+        ' * Copyright (c) Microsoft. All rights reserved.',
+        ' * Licensed under the MIT license. See LICENSE file in the project.',
+        ' ',
+      ],
+      1,
+      { lineEndings: 'unix' },
+    ],
   },
 }

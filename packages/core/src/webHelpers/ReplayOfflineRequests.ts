@@ -2,7 +2,8 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { IndexedDBStore } from '../stores/IndexedDBStore.js'
+import { IndexedDBStore } from '@pwa-toolkit/indexeddb-store'
+
 import { log } from '../utilities/logger.js'
 
 export type ReplayOfflineRequestsOptions = {
@@ -34,7 +35,10 @@ export class ReplayOfflineRequests {
   public async *replayRequests(
     fetcher: typeof fetch = this.fetch,
   ): AsyncGenerator<Response, void, void> {
-    for await (const [timestamp, serializedRequest] of this.store.entries()) {
+    for await (const [
+      timestamp,
+      serializedRequest,
+    ] of this.store.entries<string>()) {
       const requestObj = JSON.parse(serializedRequest)
       log(`Replaying request at ${timestamp} for ${serializedRequest}`)
       const request = new Request(requestObj.url, requestObj)

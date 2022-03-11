@@ -13,6 +13,10 @@
       "path": "..\\packages\\core"
     },
     {
+      "name": "📦 @pwa-toolkit/indexeddb-store",
+      "path": "..\\packages\\indexeddb-store"
+    },
+    {
       "name": "📦 @pwa-toolkit/vite-config",
       "path": "..\\packages\\vite-config"
     },
