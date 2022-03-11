@@ -32,16 +32,8 @@ export const Online: FC = memo(function Online() {
       if (networkState.online) {
         setComponentState(ComponentState.Syncing)
         try {
-          for await (const response of replay()) {
-            console.log(response)
-            await delay(5000)
-            if (!(await isNetworkOnline())) {
-              break
-            }
-          }
           setComponentState(ComponentState.Online)
         } catch (ex) {
-          console.log(ex)
           setComponentState(ComponentState.Error)
         }
       } else {
@@ -52,9 +44,3 @@ export const Online: FC = memo(function Online() {
   }, [networkState, setComponentState, replay, isNetworkOnline])
   return <Container theme={theme}>{componentState}</Container>
 })
-
-async function delay(ms: number): Promise<void> {
-  return await new Promise((resolve, reject) => {
-    setTimeout(resolve, ms)
-  })
-}

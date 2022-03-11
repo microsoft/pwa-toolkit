@@ -20,9 +20,7 @@ export function useReplayOfflineRequests(
     }),
   )
 
-  const replay = useCallback(() => {
-    return replayer.replayRequests()
-  }, [replayer])
+  const replay = useCallback(() => {}, [replayer])
 
   return replay
 }
