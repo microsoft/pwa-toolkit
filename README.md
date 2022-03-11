@@ -11,9 +11,8 @@ A toolkit for building offline enabled progressive web apps.
 
 ### Requirements
 
-1. [Docker](https://www.docker.com/products/docker-desktop)
-2. [Node 16.x](https://nodejs.org/en/)
-3. [Yarn](https://yarnpkg.com/)
+1. [Node 16.x](https://nodejs.org/en/)
+2. [Yarn](https://yarnpkg.com/)
 
 To install Yarn run
 
@@ -35,15 +34,7 @@ Set the following environment variables before running any node scripts.
 
 ```
 PORT=3001
-DB_SEED_USER_EMAIL=
-DB_SEED_USER_NAME="Some User"
-DB_SEED_USER_PASSWORD=
 APP_NAME=PWA-Toolkit
-JWT_SIGNING_ALG=RS256
-JWT_ISSUER=PWA-Toolkit
-JWT_AUDIENCE=PWA-Toolkit
-JWT_EXPIRATION=1h
-DATABASE_URL="postgresql://postgres:<DB_PASSWORD>@localhost:5432/PWA-Toolkit?schema=public"
 ```
 
 **examples/client/.env**
@@ -51,20 +42,6 @@ DATABASE_URL="postgresql://postgres:<DB_PASSWORD>@localhost:5432/PWA-Toolkit?sch
 ```
 VITE_REST_API=http://localhost:3001/api
 VITE_GRAPHQL_API=http://localhost:3001/api/graphql
-```
-
-### Configure local DB
-
-Start a container with the [postgres image](https://hub.docker.com/_/postgres).
-
-```bash
-$ sudo docker run --name postgres-pwa-toolkit -p 5432:5432 -e POSTGRES_PASSWORD="DB_PASSWORD" -d postgres
-```
-
-Confirm the Docker container is running with the following command:
-
-```bash
-$ sudo docker ps
 ```
 
 ### Install and Build
@@ -83,12 +60,10 @@ $ yarn build
 ### Scripts
 
 1. `$ yarn clean` to delete build artifacts
-2. `$ yarn typecheck` to run typescript checking in all projects. (Runs during git precommit)
-3. `$ yarn build` builds all projects and examples.
-4. `$ yarn start` starting building all projects and examples in watch mode. Starts webapp at `http://localhost:3000`
-5. `$ yarn start:prod` start examples in production mode. Enables PWA features, caching and offline mode. Launching app at `http://localhost:5000`. Be sure to clear browser cache when first accessing the app.
-
-To run any above commands for a specific project use the `--filter` flag. Example, `$ yarn start --filter ./examples/api`
+2. `$ yarn build` builds all projects and examples.
+3. `$ yarn start` starting building all projects and examples in watch mode. Starts webapp at `http://localhost:3000`
+4. `$ yarn start:prod` start examples in production mode. Enables PWA features, caching and offline mode.
+   Launches app at `http://localhost:4173`. Be sure to clear browser cache when first accessing the app.
 
 ## Contributing
 
