@@ -18,11 +18,10 @@
     "typecheck": "tsc --noEmit",
     "build:types": "tsc --emitDeclarationOnly",
     "build:package": "esbuild ./src/**/*.ts --sourcemap --platform=node --format=cjs --target=node16 --outdir=./dist/",
-    "build": "NODE_ENV=production npm-run-all prisma:generateClient --parallel build:types build:package",
-    "serve": "nodemon --watch ./dist/ -e js --exec node ./dist/index.js",
-    "start": "NODE_ENV=development run-p \"build:package --watch\" serve",
-    "start2": "NODE_ENV=development nodemon --watch ./src/ -e ts --exec yarn exec \"ts-node -T ./src/index.ts\"",
-    "start:prod": "NODE_ENV=production run-p \"build:package --watch\" serve"
+    "build": "NODE_ENV=production npm-run-all prisma:generateClient",
+    "serve": "nodemon --watch ./src/ -e ts --exec yarn exec \"ts-node -T ./src/index.ts\"",
+    "start": "NODE_ENV=development run-s serve",
+    "start:prod": "NODE_ENV=production run-s serve"
   },
   "prisma": {
     "seed": "ts-node -T ./scripts/seed.ts"

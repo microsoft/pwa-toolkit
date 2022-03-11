@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { NexusGenRootTypes } from 'api/dist/graphql/types'
+import { NexusGenRootTypes } from 'api/src/graphql/types'
 
 declare global {
   export namespace API {
