@@ -2,8 +2,9 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
+import { IndexedDBStore } from '@pwa-toolkit/indexeddb-store'
+
 import { serializeRequest } from '../serializers/request.js'
-import { IndexedDBStore } from '../stores/IndexedDBStore.js'
 import { RequestMatcher } from '../types.js'
 import { Expand } from '../utilities/expandType.js'
 import { BaseCachePlugin, BaseCachePluginOptions } from './BaseCachePlugin.js'

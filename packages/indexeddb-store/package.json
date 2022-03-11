@@ -1,7 +1,7 @@
 {
-  "name": "@pwa-toolkit/core",
-  "version": "0.2.0",
-  "description": "PWA Toolkit",
+  "name": "@pwa-toolkit/indexeddb-store",
+  "version": "0.0.1",
+  "description": "A simple key-value store with indexeddb",
   "type": "module",
   "types": "./dist/types/index.d.ts",
   "main": "./dist/cjs/index.cjs",
@@ -47,16 +47,10 @@
     "start:prod": "NODE_ENV=production run-p \"build:types -w\" \"build:esm --watch\" \"build:cjs --watch\""
   },
   "keywords": [
-    "PWA",
-    "Toolkit"
+    "PWA"
   ],
   "dependencies": {
-    "@pwa-toolkit/indexeddb-store": "workspace:^0.0.1",
-    "idb": "^7.0.0",
-    "workbox-core": "^6.4.2",
-    "workbox-precaching": "^6.4.2",
-    "workbox-routing": "^6.4.2",
-    "workbox-strategies": "^6.4.2"
+    "idb": "^7.0.0"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.19.4",

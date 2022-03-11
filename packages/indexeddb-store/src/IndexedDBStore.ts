@@ -26,11 +26,13 @@ export class IndexedDBStore {
     this.entries = this.entries.bind(this)
   }
 
-  public get = async (key: string): Promise<string | undefined> => {
-    return await (await this.dbPromise).get(this.tableName, key)
+  public get = async <T = unknown>(key: string): Promise<T | undefined> => {
+    return (await (await this.dbPromise).get(this.tableName, key)) as
+      | T
+      | undefined
   }
 
-  public set = async (key: string, value: string): Promise<void> => {
+  set = async (key: string, value: any): Promise<void> => {
     await (await this.dbPromise).put(this.tableName, value, key)
   }
 
@@ -46,20 +48,24 @@ export class IndexedDBStore {
     return (await (await this.dbPromise).getAllKeys(this.tableName)) as string[]
   }
 
-  public async *values(): AsyncGenerator<string, void, void> {
+  public async *values<T = unknown>(): AsyncGenerator<T, void, void> {
     const keys = [...(await this.keys())]
     for (const key of keys) {
-      const val = await this.get(key)
+      const val = await this.get<T>(key)
       if (val !== undefined) {
         yield val
       }
     }
   }
 
-  public async *entries(): AsyncGenerator<[string, string], void, void> {
+  public async *entries<T = unknown>(): AsyncGenerator<
+    [string, T],
+    void,
+    void
+  > {
     const keys = [...(await this.keys())]
     for (const key of keys) {
-      const val = await this.get(key)
+      const val = await this.get<T>(key)
       if (val !== undefined) {
         yield [key, val]
       }
