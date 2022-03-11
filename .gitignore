@@ -1,6 +1,7 @@
 node_modules
 packages/*/dist
 examples/*/dist
+examples/api/prisma/database.db
 packages/*/apiReportTemp
 *.env
 .env.*

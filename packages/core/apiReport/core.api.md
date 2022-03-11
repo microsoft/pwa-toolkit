@@ -322,9 +322,9 @@ export interface RegisterOptions {
 //
 // @public (undocumented)
 export class ReplayOfflineRequests {
-    constructor({ indexedDBName, indexedDBTable, fetcher, }: ReplayOfflineRequestsOptions);
+    constructor({ indexedDBName, indexedDBTable }: ReplayOfflineRequestsOptions);
     // (undocumented)
-    replayRequests(fetcher?: typeof fetch): AsyncGenerator<Response, void, void>;
+    replayRequests(): AsyncGenerator<Response, void, void>;
 }
 
 // Warning: (ae-missing-release-tag) "ReplayOfflineRequestsOptions" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)

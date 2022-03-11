@@ -6,9 +6,9 @@ import { GraphQLClient, RequestDocument, Variables } from 'graphql-request'
 
 import { config } from '../config'
 import { TokenProvider } from '../types'
-import { tokenProvider } from './auth'
+// import { tokenProvider } from './auth'
 
-class GQLClient extends GraphQLClient {
+export class GQLClient extends GraphQLClient {
   declare tokenProvider: TokenProvider<any>
 
   public setTokenProvider(tokenProvider: TokenProvider<any>): this {
@@ -27,10 +27,10 @@ class GQLClient extends GraphQLClient {
 
     const headers = new Headers(reqHeaders)
 
-    try {
-      const tokenData = await this.tokenProvider()
-      headers.set('Authorization', `Bearer ${tokenData?.token ?? ''}`)
-    } catch (ex) {}
+    // try {
+    //   const tokenData = await this.tokenProvider()
+    //   headers.set('Authorization', `Bearer ${tokenData?.token ?? ''}`)
+    // } catch (ex) {}
 
     return await super.request(document, variables, headers)
   }
@@ -41,4 +41,4 @@ export const gqlClient = new GQLClient(config.graphqlApi, {
   mode: 'cors',
 })
 
-gqlClient.setTokenProvider(tokenProvider)
+// gqlClient.setTokenProvider(tokenProvider)

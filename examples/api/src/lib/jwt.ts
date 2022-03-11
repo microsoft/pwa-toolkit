@@ -4,12 +4,12 @@
  */
 import * as jose from 'jose'
 
-import type { ExternalUser } from '../types'
+// import type { ExternalUser } from '../types'
 
-export async function verifyAuthToken(
+export async function verifyAuthToken<T>(
   token: string,
   publicKey: jose.JWK,
-): Promise<ExternalUser | unknown> {
+): Promise<T | unknown> {
   try {
     const key = await jose.importJWK(publicKey, 'RS256')
     const { payload } = await jose.jwtVerify(token, key, {
@@ -19,7 +19,7 @@ export async function verifyAuthToken(
     })
 
     if (payload != null) {
-      return payload as ExternalUser
+      return payload as unknown as T
     }
   } catch (ex) {
     return ex
