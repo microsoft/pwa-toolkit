@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import { Theme, useTheme } from '@fluentui/react'
 import { FC, memo, useEffect } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'

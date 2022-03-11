@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 const asyncIntervals: Set<() => Promise<unknown>> = new Set()
 
 async function runInterval(

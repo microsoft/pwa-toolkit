@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import { clientsClaim } from 'workbox-core'
 
 import { log, setVersion } from '../utilities/logger.js'

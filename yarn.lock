@@ -4493,6 +4493,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-header@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "eslint-plugin-header@npm:3.1.1"
+  peerDependencies:
+    eslint: ">=7.7.0"
+  checksum: 2353e4ba011be81d5c27fbd79929e18dce118d7673a2f717b1ac5a0bceb33e06ec9a7c80a01dddc5804df75e2cc8eb475d268cd1abef5eab5088ede62e5ad246
+  languageName: node
+  linkType: hard
+
 "eslint-plugin-import@npm:^2.23.1":
   version: 2.25.4
   resolution: "eslint-plugin-import@npm:2.25.4"
@@ -7435,6 +7444,7 @@ __metadata:
     eslint-config-prettier: ^8.3.0
     eslint-config-standard: ^16.0.2
     eslint-config-standard-with-typescript: ^20.0.0
+    eslint-plugin-header: ^3.1.1
     eslint-plugin-import: ^2.23.1
     eslint-plugin-node: ^11.1.0
     eslint-plugin-promise: ^5.1.0

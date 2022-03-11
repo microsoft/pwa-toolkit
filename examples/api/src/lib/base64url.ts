@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 export function base64ToBase64url(base64Text: string): string {
   return base64Text.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '')
 }

@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  plugins: ['import', 'simple-import-sort', 'react-hooks'],
+  plugins: ['import', 'simple-import-sort', 'react-hooks', 'header'],
   extends: ['standard-with-typescript', 'eslint-config-prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,5 +21,6 @@ module.exports = {
     '@typescript-eslint/no-invalid-void-type': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'header/header': [2, 'header.txt'],
   },
 }

@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import { postRequestCacheKeyer } from '../requestCacheKeyers/postRequestCacheKeyer.js'
 import { RequestMatcher } from '../types.js'
 import { Expand } from '../utilities/expandType.js'

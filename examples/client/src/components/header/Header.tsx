@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import { Theme, useTheme } from '@fluentui/react'
 import { Icon } from '@fluentui/react/lib/Icon'
 import { FC, memo, useCallback } from 'react'

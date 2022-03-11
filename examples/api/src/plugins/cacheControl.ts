@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import type * as fastify from 'fastify'
 // import type * as fastify from 'fastify'
 import fp from 'fastify-plugin'

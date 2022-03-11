@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import { createTheme, ThemeProvider } from '@fluentui/react'
 import React, { FC, memo } from 'react'
 import { BrowserRouter } from 'react-router-dom'

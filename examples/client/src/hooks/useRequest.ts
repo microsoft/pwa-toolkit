@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import { RequestDocument, Variables } from 'graphql-request'
 import { GraphQLError, GraphQLResponse } from 'graphql-request/dist/types'
 import { useEffect, useState } from 'react'

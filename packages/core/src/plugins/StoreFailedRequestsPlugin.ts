@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import { serializeRequest } from '../serializers/request.js'
 import { IndexedDBStore } from '../stores/IndexedDBStore.js'
 import { RequestMatcher } from '../types.js'

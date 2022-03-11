@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto'
 
 import { base64ToBase64url, base64urlToBase64 } from './base64url'

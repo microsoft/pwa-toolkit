@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import './notes.css'
 
 import { PrimaryButton, TextField, Theme, useTheme } from '@fluentui/react'

@@ -1,3 +1,7 @@
+/*!
+ * Copyright (c) Microsoft. All rights reserved.
+ * Licensed under the MIT license. See LICENSE file in the project.
+ */
 import { randomBytes, scrypt as s, timingSafeEqual } from 'crypto'
 import { promisify } from 'util'
 
