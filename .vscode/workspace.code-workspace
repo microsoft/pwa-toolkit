@@ -26,6 +26,7 @@
     }
   ],
   "settings": {
+    "window.title": "PWA-Toolkit",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.detectIndentation": false,

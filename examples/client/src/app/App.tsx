@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 // import { AuthProvider } from '../components/authProvider'
 import { NetworkCheckProvider } from '../components/networkCheckProvider'
+import { ReplayOfflineRequestsProvider } from '../components/replayOfflineRequestsProvider'
 // import { tokenProvider } from '../lib/auth'
 import Routes from './Routes'
 import { defaultTheme } from './theme'
@@ -25,7 +26,9 @@ const App: FC = function App() {
         <ThemeProvider style={themeDivStyles} theme={theme}>
           {/* <AuthProvider tokenProvider={tokenProvider}> */}
           <NetworkCheckProvider url="/health-check" interval={10 * 1000}>
-            <Routes />
+            <ReplayOfflineRequestsProvider>
+              <Routes />
+            </ReplayOfflineRequestsProvider>
           </NetworkCheckProvider>
           {/* </AuthProvider> */}
         </ThemeProvider>

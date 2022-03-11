@@ -32,6 +32,11 @@ export type RequestMatcher = (request: Request) => Promise<boolean>
 export type RequestMatcherSync = (request: Request) => boolean
 export type RequestCacheKeyer = (request: Request) => Promise<string>
 
+export type IndexedDbRequestSerializer = (
+  indexedDbRecord: Request,
+) => Promise<unknown>
+export type IndexedDbRequestDeserializer = (indexedDbRecord: unknown) => Request
+
 declare global {
   interface ServiceWorkerGlobalScope {
     __ENABLE_PWA_TOOLKIT_LOGGING: boolean
