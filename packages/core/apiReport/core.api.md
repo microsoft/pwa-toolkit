@@ -318,6 +318,24 @@ export interface RegisterOptions {
     skipWaiting?: boolean;
 }
 
+// Warning: (ae-missing-release-tag) "ReplayOfflineRequests" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export class ReplayOfflineRequests {
+    constructor({ indexedDBName, indexedDBTable, fetcher, }: ReplayOfflineRequestsOptions);
+    // (undocumented)
+    replayRequests(fetcher?: typeof fetch): AsyncGenerator<Response, void, void>;
+}
+
+// Warning: (ae-missing-release-tag) "ReplayOfflineRequestsOptions" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export type ReplayOfflineRequestsOptions = {
+    indexedDBName: string;
+    indexedDBTable: string;
+    fetcher?: typeof fetch;
+};
+
 // Warning: (ae-missing-release-tag) "RequestCacheKeyer" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
 // @public (undocumented)
@@ -353,7 +371,7 @@ export function serializeRequest(request: Request, prettyPrint?: boolean): Promi
 // Warning: (ae-missing-release-tag) "serializeRequestBody" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
 // @public (undocumented)
-export function serializeRequestBody(request: Request, prettyPrint?: boolean): Promise<string>;
+export function serializeRequestBody(request: Request): Promise<string>;
 
 // Warning: (ae-missing-release-tag) "serializeResponse" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //

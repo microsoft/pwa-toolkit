@@ -12,6 +12,7 @@ import { schema } from './graphql/schema'
 import { verifyAuthToken } from './lib/jwt'
 import cacheControlPlugin from './plugins/cacheControl'
 import { prismaPlugin } from './plugins/prisma'
+import { healthCheck } from './routes/healthCheck'
 import { api } from './routes/index'
 import { Certificate, ExternalUser } from './types'
 
@@ -77,6 +78,7 @@ async function start(): Promise<void> {
     void app.register(server.createHandler({ cors: false }), { prefix: '/api' })
     void app.register(prismaPlugin, { prisma })
     void app.register(api, { prefix: '/api' })
+    void app.register(healthCheck)
     await app.listen(process.env.PORT ?? 3000)
   } catch (err) {
     app.log.error(err)

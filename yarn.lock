@@ -1690,8 +1690,8 @@ __metadata:
     "@examples/api": "workspace:^1.0.0"
     "@fluentui/font-icons-mdl2": ^8.1.20
     "@fluentui/react": ^8.49.3
-    "@pwa-toolkit/core": "workspace:^0.1.0"
-    "@pwa-toolkit/vite-config": "workspace:^0.1.0"
+    "@pwa-toolkit/core": "workspace:^0.1.1"
+    "@pwa-toolkit/vite-config": "workspace:^0.1.1"
     "@types/react": ^17.0.33
     "@types/react-dom": ^17.0.10
     "@types/styled-components": ^5.1.20
@@ -2229,7 +2229,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pwa-toolkit/core@workspace:^0.1.0, @pwa-toolkit/core@workspace:packages/core":
+"@pwa-toolkit/core@workspace:^0.1.1, @pwa-toolkit/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@pwa-toolkit/core@workspace:packages/core"
   dependencies:
@@ -2247,7 +2247,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@pwa-toolkit/vite-config@workspace:^0.1.0, @pwa-toolkit/vite-config@workspace:packages/vite-config":
+"@pwa-toolkit/vite-config@workspace:^0.1.1, @pwa-toolkit/vite-config@workspace:packages/vite-config":
   version: 0.0.0-use.local
   resolution: "@pwa-toolkit/vite-config@workspace:packages/vite-config"
   dependencies:

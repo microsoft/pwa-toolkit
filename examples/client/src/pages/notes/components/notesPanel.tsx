@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Flex from '../../../components/flexbox/flexbox'
-import { useRequest } from '../../../hooks/useRequet'
+import { useRequest } from '../../../hooks/useRequest'
 
 const Container = styled.div`
   height: 100%;

@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 import Flex from '../../../components/flexbox/flexbox'
-import { useRequest } from '../../../hooks/useRequet'
+import { useRequest } from '../../../hooks/useRequest'
 import { gqlClient } from '../../../lib/gqlClient'
 
 const Container = styled.div`

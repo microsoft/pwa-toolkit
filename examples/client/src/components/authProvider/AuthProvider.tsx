@@ -2,10 +2,10 @@ import { FC, memo, PropsWithChildren, useEffect, useState } from 'react'
 
 import { TokenProvider } from '../../types'
 import {
-  AuthProviderContext,
+  AuthContext,
   authProviderContextDefaultValue,
 } from './AuthProviderContext'
-import { AuthContext } from './types'
+import { AuthState } from './types'
 
 export interface AuthProviderProps {
   tokenProvider: TokenProvider
@@ -17,7 +17,7 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = memo(
     tokenProvider,
     children,
   }: PropsWithChildren<AuthProviderProps>) {
-    const [authContext, setAuthProviderContext] = useState<AuthContext<any>>(
+    const [authState, setAuthState] = useState<AuthState<any>>(
       authProviderContextDefaultValue[0],
     )
 
@@ -25,13 +25,13 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = memo(
       const loadToken = async (): Promise<void> => {
         try {
           const tokenPayload = await tokenProvider()
-          setAuthProviderContext({
+          setAuthState({
             loading: false,
             authenticated: tokenPayload != null,
             ...tokenPayload,
           })
         } catch (ex) {
-          setAuthProviderContext({
+          setAuthState({
             loading: false,
             authenticated: false,
             error: ex as Error,
@@ -39,14 +39,12 @@ export const AuthProvider: FC<PropsWithChildren<AuthProviderProps>> = memo(
         }
       }
       void loadToken()
-    }, [tokenProvider, setAuthProviderContext])
+    }, [tokenProvider, setAuthState])
 
     return (
-      <AuthProviderContext.Provider
-        value={[authContext, setAuthProviderContext]}
-      >
+      <AuthContext.Provider value={[authState, setAuthState]}>
         {children}
-      </AuthProviderContext.Provider>
+      </AuthContext.Provider>
     )
   },
 )
