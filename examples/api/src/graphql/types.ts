@@ -27,41 +27,10 @@ export interface NexusGenObjects {
     // root type
     id?: string | null // ID
     name?: string | null // String
-    publicKey?: NexusGenRootTypes['JWK'] | null // JWK
-  }
-  JWK: {
-    // root type
-    alg?: string | null // String
-    crv?: string | null // String
-    d?: string | null // String
-    dp?: string | null // String
-    dq?: string | null // String
-    e?: string | null // String
-    ext?: string | null // String
-    k?: string | null // String
-    key_ops?: string | null // String
-    kid?: string | null // String
-    kty?: string | null // String
-    n?: string | null // String
-    p?: string | null // String
-    q?: string | null // String
-    qi?: string | null // String
-    use?: string | null // String
-    x?: string | null // String
-    x5t256?: string | null // String
-    x5u?: string | null // String
-    y?: string | null // String
   }
   Mutation: {}
   Note: Note
   Query: {}
-  User: {
-    // root type
-    email: string // String!
-    hmacSigningKey?: NexusGenRootTypes['JWK'] | null // JWK
-    id?: string | null // ID
-    name?: string | null // String
-  }
 }
 
 export interface NexusGenInterfaces {}
@@ -77,30 +46,6 @@ export interface NexusGenFieldTypes {
     // field return type
     id: string | null // ID
     name: string | null // String
-    publicKey: NexusGenRootTypes['JWK'] | null // JWK
-  }
-  JWK: {
-    // field return type
-    alg: string | null // String
-    crv: string | null // String
-    d: string | null // String
-    dp: string | null // String
-    dq: string | null // String
-    e: string | null // String
-    ext: string | null // String
-    k: string | null // String
-    key_ops: string | null // String
-    kid: string | null // String
-    kty: string | null // String
-    n: string | null // String
-    p: string | null // String
-    q: string | null // String
-    qi: string | null // String
-    use: string | null // String
-    x: string | null // String
-    x5t256: string | null // String
-    x5u: string | null // String
-    y: string | null // String
   }
   Mutation: {
     // field return type
@@ -109,7 +54,6 @@ export interface NexusGenFieldTypes {
   }
   Note: {
     // field return type
-    author: NexusGenRootTypes['User'] // User!
     content: string | null // String
     id: string | null // ID
     title: string // String!
@@ -120,13 +64,6 @@ export interface NexusGenFieldTypes {
     note: NexusGenRootTypes['Note'] | null // Note
     notes: NexusGenRootTypes['Note'][] // [Note!]!
   }
-  User: {
-    // field return type
-    email: string // String!
-    hmacSigningKey: NexusGenRootTypes['JWK'] | null // JWK
-    id: string | null // ID
-    name: string | null // String
-  }
 }
 
 export interface NexusGenFieldTypeNames {
@@ -134,30 +71,6 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     id: 'ID'
     name: 'String'
-    publicKey: 'JWK'
-  }
-  JWK: {
-    // field return type name
-    alg: 'String'
-    crv: 'String'
-    d: 'String'
-    dp: 'String'
-    dq: 'String'
-    e: 'String'
-    ext: 'String'
-    k: 'String'
-    key_ops: 'String'
-    kid: 'String'
-    kty: 'String'
-    n: 'String'
-    p: 'String'
-    q: 'String'
-    qi: 'String'
-    use: 'String'
-    x: 'String'
-    x5t256: 'String'
-    x5u: 'String'
-    y: 'String'
   }
   Mutation: {
     // field return type name
@@ -166,7 +79,6 @@ export interface NexusGenFieldTypeNames {
   }
   Note: {
     // field return type name
-    author: 'User'
     content: 'String'
     id: 'ID'
     title: 'String'
@@ -176,13 +88,6 @@ export interface NexusGenFieldTypeNames {
     application: 'Application'
     note: 'Note'
     notes: 'Note'
-  }
-  User: {
-    // field return type name
-    email: 'String'
-    hmacSigningKey: 'JWK'
-    id: 'ID'
-    name: 'String'
   }
 }
 

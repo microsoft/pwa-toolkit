@@ -21,6 +21,7 @@
     "build": "NODE_ENV=production npm-run-all prisma:generateClient --parallel build:types build:package",
     "serve": "nodemon --watch ./dist/ -e js --exec node ./dist/index.js",
     "start": "NODE_ENV=development run-p \"build:package --watch\" serve",
+    "start2": "NODE_ENV=development nodemon --watch ./src/ -e ts --exec yarn exec \"ts-node -T ./src/index.ts\"",
     "start:prod": "NODE_ENV=production run-p \"build:package --watch\" serve"
   },
   "prisma": {

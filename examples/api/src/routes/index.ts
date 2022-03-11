@@ -4,12 +4,10 @@
  */
 import { FastifyPluginAsync } from 'fastify'
 
-import { application } from './application'
-import { authenticate } from './authenticate'
-import { hello } from './hello'
+import { api } from './api'
+import { healthCheck } from './healthCheck'
 
-export const api: FastifyPluginAsync = async (fastify, options) => {
-  void fastify.register(hello)
-  void fastify.register(application)
-  void fastify.register(authenticate)
+export const routes: FastifyPluginAsync = async (fastify, options) => {
+  void fastify.register(api)
+  void fastify.register(healthCheck)
 }

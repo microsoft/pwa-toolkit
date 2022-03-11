@@ -11,12 +11,9 @@ export const application: FastifyPluginAsync = async (fastify, options) => {
     handler: async (request, reply) => {
       const app: any = await fastify.prisma.application.findFirst()
       if (app !== null) {
-        app.publicKey = app.certificate.publicKey
-        delete app.certificate
-        // const today = new Date()
-        // return await reply.expires(add(today, { days: 1 })).send({ data: app })
+        // app.publicKey = app.certificate.publicKey
+        // delete app.certificate
 
-        // return { data: app }
         return await reply
           .cacheControl({
             cache: 'private',

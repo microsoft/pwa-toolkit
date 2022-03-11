@@ -2,7 +2,7 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { FieldResolver, objectType } from 'nexus'
+import { /* FieldResolver, */ objectType } from 'nexus'
 
 export const Note = objectType({
   name: 'Note',
@@ -14,15 +14,15 @@ export const Note = objectType({
     t.id('id', { description: 'UUID of the Note' })
     t.nonNull.string('title', { description: 'Unique Note title' })
     t.string('content', { description: 'Note contents' })
-    t.nonNull.field('author', {
-      type: 'User',
-      async resolve(parent, args, { dataSources, user }) {
-        return (await dataSources.prisma.user.findUnique({
-          where: {
-            id: parent.authorId,
-          },
-        })) as ReturnType<FieldResolver<'Note', 'Author'>>
-      },
-    })
+    // t.nonNull.field('author', {
+    //   type: 'User',
+    //   async resolve(parent, args, { dataSources, user }) {
+    //     return (await dataSources.prisma.user.findUnique({
+    //       where: {
+    //         id: parent.authorId,
+    //       },
+    //     })) as ReturnType<FieldResolver<'Note', 'Author'>>
+    //   },
+    // })
   },
 })

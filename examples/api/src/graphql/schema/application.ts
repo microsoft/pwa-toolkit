@@ -9,8 +9,8 @@ export const Application = objectType({
   definition(t) {
     t.id('id', { description: 'UUID of the Application' })
     t.string('name', { description: 'Application display name' })
-    t.field('publicKey', {
-      type: 'JWK',
-    })
+    // t.field('publicKey', {
+    //   type: 'JWK',
+    // })
   },
 })

@@ -3,8 +3,8 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import {
-  AuthenticationError,
-  ForbiddenError,
+  /* AuthenticationError,
+  ForbiddenError, */
   UserInputError,
 } from 'apollo-server-core'
 import { mutationType, nonNull, stringArg } from 'nexus'
@@ -17,14 +17,14 @@ export const Mutation = mutationType({
         title: nonNull(stringArg()),
         content: stringArg(),
       },
-      async resolve(parent, args, { dataSources, user }) {
-        if (user == null) {
-          throw new AuthenticationError('Unauthenticated')
-        }
+      async resolve(parent, args, { dataSources /*, user */ }) {
+        // if (user == null) {
+        //   throw new AuthenticationError('Unauthenticated')
+        // }
         return await dataSources.prisma.note.create({
           data: {
             ...args,
-            authorId: user.id,
+            // authorId: user.id,
           },
         })
       },
@@ -36,10 +36,10 @@ export const Mutation = mutationType({
         id: nonNull(stringArg()),
         content: stringArg(),
       },
-      async resolve(parent, args, { dataSources, user }) {
-        if (user == null) {
-          throw new AuthenticationError('Unauthenticated')
-        }
+      async resolve(parent, args, { dataSources /*, user */ }) {
+        // if (user == null) {
+        //   throw new AuthenticationError('Unauthenticated')
+        // }
         const note = await dataSources.prisma.note.findUnique({
           where: {
             id: args.id,
@@ -48,9 +48,9 @@ export const Mutation = mutationType({
         if (note === null) {
           throw new UserInputError(`Note ${args.id} does not exist.`)
         }
-        if (user.id !== note.authorId) {
-          throw new ForbiddenError('Unauthorized')
-        }
+        // if (user.id !== note.authorId) {
+        //   throw new ForbiddenError('Unauthorized')
+        // }
         return await dataSources.prisma.note.update({
           where: {
             id: args.id,

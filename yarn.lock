@@ -1690,7 +1690,7 @@ __metadata:
     "@examples/api": "workspace:^1.0.0"
     "@fluentui/font-icons-mdl2": ^8.1.20
     "@fluentui/react": ^8.49.3
-    "@pwa-toolkit/core": "workspace:^0.2.0"
+    "@pwa-toolkit/core": "workspace:^0.3.0"
     "@pwa-toolkit/vite-config": "workspace:^0.1.1"
     "@types/react": ^17.0.33
     "@types/react-dom": ^17.0.10
@@ -2229,12 +2229,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pwa-toolkit/core@workspace:^0.2.0, @pwa-toolkit/core@workspace:packages/core":
+"@pwa-toolkit/core@workspace:^0.3.0, @pwa-toolkit/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@pwa-toolkit/core@workspace:packages/core"
   dependencies:
     "@microsoft/api-extractor": ^7.19.4
-    "@pwa-toolkit/indexeddb-store": "workspace:^0.0.1"
+    "@pwa-toolkit/indexeddb-store": "workspace:^0.1.0"
     esbuild: ^0.14.23
     idb: ^7.0.0
     npm-run-all: ^4.1.5
@@ -2248,7 +2248,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@pwa-toolkit/indexeddb-store@workspace:^0.0.1, @pwa-toolkit/indexeddb-store@workspace:packages/indexeddb-store":
+"@pwa-toolkit/indexeddb-store@workspace:^0.1.0, @pwa-toolkit/indexeddb-store@workspace:packages/indexeddb-store":
   version: 0.0.0-use.local
   resolution: "@pwa-toolkit/indexeddb-store@workspace:packages/indexeddb-store"
   dependencies:

@@ -10,8 +10,8 @@ export const User = objectType({
     t.id('id', { description: 'UUID of the User' })
     t.nonNull.string('email', { description: 'Unique user email' })
     t.string('name', { description: 'optional user display name' })
-    t.field('hmacSigningKey', {
-      type: 'JWK',
-    })
+    // t.field('hmacSigningKey', {
+    //   type: 'JWK',
+    // })
   },
 })

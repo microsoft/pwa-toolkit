@@ -9,8 +9,8 @@ declare global {
     type Query = NexusGenRootTypes['Query']
     type Mutation = NexusGenRootTypes['Mutation']
     type Application = NexusGenRootTypes['Application']
-    type JWK = NexusGenRootTypes['JWK']
+    // type JWK = NexusGenRootTypes['JWK']
     type Note = NexusGenRootTypes['Note']
-    type User = NexusGenRootTypes['User']
+    // type User = NexusGenRootTypes['User']
   }
 }
