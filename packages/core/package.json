@@ -1,6 +1,6 @@
 {
   "name": "@pwa-toolkit/core",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "PWA Toolkit",
   "type": "module",
   "types": "./dist/types/index.d.ts",
@@ -51,7 +51,7 @@
     "Toolkit"
   ],
   "dependencies": {
-    "@pwa-toolkit/indexeddb-store": "workspace:^0.0.1",
+    "@pwa-toolkit/indexeddb-store": "workspace:^0.1.0",
     "idb": "^7.0.0",
     "workbox-core": "^6.4.2",
     "workbox-precaching": "^6.4.2",

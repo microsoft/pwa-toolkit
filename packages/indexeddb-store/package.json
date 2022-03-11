@@ -1,6 +1,6 @@
 {
   "name": "@pwa-toolkit/indexeddb-store",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple key-value store with indexeddb",
   "type": "module",
   "types": "./dist/types/index.d.ts",
