@@ -1,23 +1,27 @@
 {
   "folders": [
     {
-      "name": "🚀 api",
+      "name": "api",
       "path": "..\\examples\\api"
     },
     {
-      "name": "🚀 client",
+      "name": "client",
       "path": "..\\examples\\client"
     },
     {
-      "name": "📦 @pwa-toolkit/core",
+      "name": "core",
       "path": "..\\packages\\core"
     },
     {
-      "name": "📦 @pwa-toolkit/indexeddb-store",
+      "name": "indexeddb-store",
       "path": "..\\packages\\indexeddb-store"
     },
     {
-      "name": "📦 @pwa-toolkit/vite-config",
+      "name": "react",
+      "path": "..\\packages\\react"
+    },
+    {
+      "name": "vite-config",
       "path": "..\\packages\\vite-config"
     },
     {

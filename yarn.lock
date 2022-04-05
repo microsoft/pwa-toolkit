@@ -1691,6 +1691,7 @@ __metadata:
     "@fluentui/font-icons-mdl2": ^8.1.20
     "@fluentui/react": ^8.49.3
     "@pwa-toolkit/core": "workspace:^0.3.0"
+    "@pwa-toolkit/react": "workspace:^0.0.1"
     "@pwa-toolkit/vite-config": "workspace:^0.1.1"
     "@types/react": ^17.0.33
     "@types/react-dom": ^17.0.10
@@ -2259,6 +2260,22 @@ __metadata:
     shx: ^0.3.3
     ts-node: ^10.4.0
     typescript: ^4.5.5
+  languageName: unknown
+  linkType: soft
+
+"@pwa-toolkit/react@workspace:^0.0.1, @pwa-toolkit/react@workspace:packages/react":
+  version: 0.0.0-use.local
+  resolution: "@pwa-toolkit/react@workspace:packages/react"
+  dependencies:
+    "@microsoft/api-extractor": ^7.19.4
+    esbuild: ^0.14.23
+    npm-run-all: ^4.1.5
+    react: ^17.0.0
+    shx: ^0.3.3
+    ts-node: ^10.4.0
+    typescript: ^4.5.5
+  peerDependencies:
+    react: ^17.0.0
   languageName: unknown
   linkType: soft
 
@@ -7585,7 +7602,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^17.0.2":
+"react@npm:^17.0.0, react@npm:^17.0.2":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
   dependencies:
