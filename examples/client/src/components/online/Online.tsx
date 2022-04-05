@@ -32,6 +32,12 @@ export const Online: FC = memo(function Online() {
       if (networkState.online) {
         setComponentState(ComponentState.Syncing)
         try {
+          for await (const response of replay()) {
+            if (response.status !== 200) {
+              setComponentState(ComponentState.Error)
+              break
+            }
+          }
           setComponentState(ComponentState.Online)
         } catch (ex) {
           setComponentState(ComponentState.Error)

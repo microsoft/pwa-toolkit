@@ -2,25 +2,20 @@
  * Copyright (c) Microsoft. All rights reserved.
  * Licensed under the MIT license. See LICENSE file in the project.
  */
-import { ReplayOfflineRequests } from '@pwa-toolkit/core'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 
-export type UseReplayOfflineRequestsOptions = {
-  indexedDBName?: string
-  indexedDBTable?: string
-}
+import { useReplayOfflineRequestsContext } from '../components/replayOfflineRequestsProvider'
 
-export function useReplayOfflineRequests(
-  options: UseReplayOfflineRequestsOptions = {},
-): () => AsyncGenerator<Response, void, void> {
-  const [replayer] = useState(
-    new ReplayOfflineRequests({
-      indexedDBName: options.indexedDBName ?? 'PWA-Toolkit',
-      indexedDBTable: options.indexedDBTable ?? 'Offline requests',
-    }),
-  )
+export function useReplayOfflineRequests(): () => AsyncGenerator<
+  Response,
+  void,
+  void
+> {
+  const replayer = useReplayOfflineRequestsContext()
 
-  const replay = useCallback(() => {}, [replayer])
+  const replay = useCallback(() => {
+    return replayer.replayRequests()
+  }, [replayer])
 
   return replay
 }

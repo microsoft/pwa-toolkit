@@ -5,7 +5,7 @@
 import { IndexedDBStore } from '@pwa-toolkit/indexeddb-store'
 
 import { serializeRequest } from '../serializers/request.js'
-import { RequestMatcher } from '../types.js'
+import { IndexedDbRequestSerializer, RequestMatcher } from '../types.js'
 import { Expand } from '../utilities/expandType.js'
 import { BaseCachePlugin, BaseCachePluginOptions } from './BaseCachePlugin.js'
 import {
@@ -20,6 +20,7 @@ export type StoreFailedRequestsPluginOptions = Expand<
     requestMatcher?: RequestMatcher
     indexedDBName?: string
     indexedDBTable?: string
+    requestSerializer?: IndexedDbRequestSerializer
   }
 >
 
@@ -28,6 +29,7 @@ export class StoreFailedRequestsPlugin extends BaseCachePlugin {
   private declare readonly indexedDBName: string
   private declare readonly indexedDBTable: string
   private declare readonly store: IndexedDBStore
+  private declare readonly serializer: IndexedDbRequestSerializer
 
   constructor(options: StoreFailedRequestsPluginOptions = {}) {
     super({
@@ -41,6 +43,7 @@ export class StoreFailedRequestsPlugin extends BaseCachePlugin {
       dbName: this.indexedDBName,
       tableName: this.indexedDBTable,
     })
+    this.serializer = options.requestSerializer ?? serializeRequest
   }
 
   public override async fetchDidFail(
@@ -52,7 +55,7 @@ export class StoreFailedRequestsPlugin extends BaseCachePlugin {
       this.requestMatcher != null &&
       (await this.requestMatcher(state.request.clone()))
     ) {
-      const serializedRequest = await serializeRequest(state.request.clone())
+      const serializedRequest = await this.serializer(state.request.clone())
       await this.store.set(state.timestamp, serializedRequest)
     }
   }
