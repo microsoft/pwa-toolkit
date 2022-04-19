@@ -199,6 +199,11 @@ export type FetchDidSucceedCallbackParam = Expand<Omit<WB.FetchDidSucceedCallbac
     state?: MapLikeObject;
 }>;
 
+// Warning: (ae-missing-release-tag) "Fetcher" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export type Fetcher = (request: Request) => Promise<Response>;
+
 // Warning: (ae-missing-release-tag) "getRequestCacheKeyer" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
 // @public (undocumented)
@@ -274,6 +279,16 @@ export type HandlerWillStartCallbackParam = Expand<Omit<WB.HandlerWillStartCallb
     state?: MapLikeObject;
 }>;
 
+// Warning: (ae-missing-release-tag) "IndexedDbRequestDeserializer" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export type IndexedDbRequestDeserializer = (indexedDbRecord: unknown) => Request;
+
+// Warning: (ae-missing-release-tag) "IndexedDbRequestSerializer" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export type IndexedDbRequestSerializer = (indexedDbRecord: Request) => Promise<unknown>;
+
 // Warning: (ae-missing-release-tag) "MapLikeObject" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
 // @public (undocumented)
@@ -322,18 +337,25 @@ export interface RegisterOptions {
 //
 // @public (undocumented)
 export class ReplayOfflineRequests {
-    constructor({ indexedDBName, indexedDBTable }: ReplayOfflineRequestsOptions);
+    constructor(options?: ReplayOfflineRequestsOptions);
     // (undocumented)
-    replayRequests(): AsyncGenerator<Response, void, void>;
+    replayRequests(options?: ReplayRequestsOptions): AsyncGenerator<Response, void, void>;
 }
 
 // Warning: (ae-missing-release-tag) "ReplayOfflineRequestsOptions" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
 // @public (undocumented)
-export type ReplayOfflineRequestsOptions = {
-    indexedDBName: string;
-    indexedDBTable: string;
-    fetcher?: typeof fetch;
+export type ReplayOfflineRequestsOptions = Expand<ReplayRequestsOptions & {
+    indexedDBName?: string;
+    indexedDBTable?: string;
+}>;
+
+// Warning: (ae-missing-release-tag) "ReplayRequestsOptions" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
+//
+// @public (undocumented)
+export type ReplayRequestsOptions = {
+    fetcher?: Fetcher;
+    deserializer?: IndexedDbRequestDeserializer;
 };
 
 // Warning: (ae-missing-release-tag) "RequestCacheKeyer" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
@@ -366,7 +388,7 @@ export type RequestWillFetchCallbackParam = Expand<Omit<WB.RequestWillFetchCallb
 // Warning: (ae-missing-release-tag) "serializeRequest" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
 // @public (undocumented)
-export function serializeRequest(request: Request, prettyPrint?: boolean): Promise<string>;
+export const serializeRequest: IndexedDbRequestSerializer;
 
 // Warning: (ae-missing-release-tag) "serializeRequestBody" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
 //
@@ -396,6 +418,7 @@ export type StoreFailedRequestsPluginOptions = Expand<Omit<BaseCachePluginOption
     requestMatcher?: RequestMatcher;
     indexedDBName?: string;
     indexedDBTable?: string;
+    requestSerializer?: IndexedDbRequestSerializer;
 }>;
 
 // Warning: (ae-missing-release-tag) "Test" is exported by the package, but it is missing a release tag (@alpha, @beta, @public, or @internal)
