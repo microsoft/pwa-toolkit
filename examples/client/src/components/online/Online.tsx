@@ -8,12 +8,13 @@ import styled from 'styled-components'
 
 import { useReplayOfflineRequests } from '../../hooks/useReplayOfflineRequests'
 import { useNetworkCheckContext } from '../networkCheckProvider'
+import { NetworkStatusBar } from '../NetworkStatusBar'
 
 const Container = styled.div<{ theme: Theme }>`
   color: ${({ theme }: { theme: Theme }) => theme.palette.neutralLight};
 `
 
-enum ComponentState {
+export enum ComponentState {
   Online = 'Online',
   Offline = 'Offline',
   Syncing = 'Syncing',
@@ -48,5 +49,7 @@ export const Online: FC = memo(function Online() {
     }
     void sync()
   }, [networkState, setComponentState, replay, isNetworkOnline])
-  return <Container theme={theme}>{componentState}</Container>
+  return <Container theme={theme}>      
+    <NetworkStatusBar componentState={componentState}/>
+  </Container>
 })

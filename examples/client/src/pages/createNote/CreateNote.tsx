@@ -4,6 +4,7 @@
  */
 import {
   Label,
+  MessageBarType,
   PrimaryButton,
   TextField,
   Theme,
@@ -14,6 +15,7 @@ import type { GraphQLResponse } from 'graphql-request/dist/types'
 import { FC, memo, useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { CustomModalMessage } from '../../components/CustomModalMessage'
 
 import Flex from '../../components/flexbox/flexbox'
 import { gqlClient } from '../../lib/gqlClient'
@@ -50,6 +52,13 @@ const CreateNotePage: FC = function CreateNotePage() {
   const [componentState, setComponentState] = useState<ComponentState>(
     ComponentState.Waiting,
   )
+
+  const [successMessage, setSuccessMessage] = useState('')
+  const [showModalMessage, setShowModalMessage] = useState(false)
+  const [modalType, setModalType] = useState<MessageBarType>(MessageBarType.success)
+
+  const resetChoice = useCallback(() => setShowModalMessage(false), []);
+
   const [errorMessage, setErrorMessage] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -57,11 +66,9 @@ const CreateNotePage: FC = function CreateNotePage() {
 
   useEffect(() => {
     if (componentState === ComponentState.Error) {
-      alert(errorMessage)
       setComponentState(ComponentState.Waiting)
-      setErrorMessage('')
     }
-  }, [componentState, setComponentState, errorMessage, setErrorMessage])
+  }, [componentState, setComponentState])
 
   const handleTitleUpdate = useCallback(
     (
@@ -97,24 +104,39 @@ const CreateNotePage: FC = function CreateNotePage() {
             content,
           },
         )
-        navigate(`/${results.createNote.id}`)
+
+        setSuccessMessage("Note " + title + " created")
+        setErrorMessage('')
+        setModalType(MessageBarType.success)
+        setShowModalMessage(true)
+
+        setTimeout(function(){
+          navigate(`/${results.createNote.id}`)
+        }, 2000)
+
         setComponentState(ComponentState.Waiting)
       } catch (ex: any) {
-        const errorMessage =
+        const errorMessageValue =
           (ex.response as GraphQLResponse).errors?.reduce((acc, cur) => {
             return `${acc}${acc !== '' ? '\n' : ''}${cur.message}`
           }, '') ?? ''
-        setErrorMessage(errorMessage)
+
+        setErrorMessage(errorMessageValue)
+        setSuccessMessage("Note " + title + " was not created")
+        setModalType(MessageBarType.error)
+        setShowModalMessage(true)
+
         setComponentState(ComponentState.Error)
       }
     },
-    [setComponentState, content, title, navigate],
+    [setComponentState, content, title, navigate, setSuccessMessage, setShowModalMessage, setModalType, setErrorMessage],
   )
 
   return (
     <Container theme={theme}>
       <form style={{ height: '100%' }} onSubmit={handleSubmit}>
         <Flex gap="5px" vertical>
+          <CustomModalMessage show={showModalMessage} message={successMessage} type={modalType} errorMessage={errorMessage} resetChoice={resetChoice}/>
           <Label htmlFor="title">Title: </Label>
           <TextField id="title" value={title} onChange={handleTitleUpdate} />
           <Label htmlFor="note">Note: </Label>
