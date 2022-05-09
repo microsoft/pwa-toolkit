@@ -4,7 +4,7 @@
  */
 import './notes.css'
 
-import { PrimaryButton, TextField, Theme, useTheme } from '@fluentui/react'
+import { MessageBarType, PrimaryButton, TextField, Theme, useTheme } from '@fluentui/react'
 import { gql } from 'graphql-request'
 import type { GraphQLResponse } from 'graphql-request/dist/types'
 import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react'
@@ -14,6 +14,7 @@ import styled from 'styled-components'
 import Flex from '../../../components/flexbox/flexbox'
 import { useRequest } from '../../../hooks/useRequest'
 import { gqlClient } from '../../../lib/gqlClient'
+import { CustomModalMessage } from '../../../components/CustomModalMessage'
 
 const Container = styled.div`
   height: 100%;
@@ -60,6 +61,13 @@ const NotePage: FC = function NotePage() {
   const [componentState, setComponentState] = useState<ComponentState>(
     ComponentState.Waiting,
   )
+
+  const [successMessage, setSuccessMessage] = useState('')
+  const [showModalMessage, setShowModalMessage] = useState(false)
+  const [modalType, setModalType] = useState<MessageBarType>(MessageBarType.success)
+  
+  const resetChoice = useCallback(() => setShowModalMessage(false), []);
+
   const [errorMessage, setErrorMessage] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -106,9 +114,8 @@ const NotePage: FC = function NotePage() {
     if (componentState === ComponentState.Error) {
       alert(errorMessage)
       setComponentState(ComponentState.Waiting)
-      setErrorMessage('')
     }
-  }, [componentState, setComponentState, errorMessage, setErrorMessage])
+  }, [componentState, setComponentState])
 
   const handleContentUpdate = useCallback(
     (
@@ -131,12 +138,31 @@ const NotePage: FC = function NotePage() {
           content: content,
         })
         setComponentState(ComponentState.Waiting)
+
+        setSuccessMessage("Note " + title + " updated")
+        setErrorMessage('')
+        setModalType(MessageBarType.success)
+        setShowModalMessage(true)
+
+        setTimeout(function(){
+          setShowModalMessage(false)
+        }, 2000)
+
       } catch (ex: any) {
         const errorMessage =
           (ex.response as GraphQLResponse).errors?.reduce((acc, cur) => {
             return `${acc}${acc !== '' ? '\n' : ''}${cur.message}`
           }, '') ?? ''
         setErrorMessage(errorMessage)
+
+        setSuccessMessage("Note " + title + " was not updated")
+        setModalType(MessageBarType.error)
+        setShowModalMessage(true)
+
+        setTimeout(function(){
+          setShowModalMessage(false)
+        }, 2000)
+
         setComponentState(ComponentState.Error)
       }
     },
@@ -146,6 +172,7 @@ const NotePage: FC = function NotePage() {
   return (
     <Container theme={theme}>
       <form style={{ height: '100%' }} onSubmit={handleSubmit}>
+      <CustomModalMessage show={showModalMessage} message={successMessage} type={modalType} errorMessage={errorMessage} resetChoice={resetChoice}/>
         <Flex style={{ height: '100%' }} vertical gap="10px">
           <h1>{title}</h1>
           <Flex.Box grow={1}>

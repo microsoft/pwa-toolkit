@@ -3,59 +3,62 @@
  * Licensed under the MIT license. See LICENSE file in the project.
  */
 import {
-	IStackTokens,
 	PartialTheme,
-	Stack,
-	useTheme,
 	MessageBar,
 	MessageBarType,
 	IconButton,
-	MessageBarButton
 } from '@fluentui/react'
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
+import { ComponentState } from '../online'
 
-export const NetworkStatusBar: React.FC = memo(
-	function NetworkStatusBar() {
-		const theme = useTheme()
+export interface NetworkStatusBarProps {
+	componentState: ComponentState
+}
 
-		const [offlineApplicationStatus, setOfflineStatus] = useState(false)
-		
-		const menuStackTokens: IStackTokens = {
-			childrenGap: theme.spacing.m,
-		}
+export const NetworkStatusBar: React.FC<NetworkStatusBarProps> = memo(
+	function NetworkStatusBar({
+    componentState
+  }) {
 
 		return (
 			<Container>
-				<Stack horizontal tokens={menuStackTokens}>
-					{offlineApplicationStatus === false ? (
+					{componentState === ComponentState.Online ? (
 						<CustomMessageBar
-							actions={
-								<div>
-								<MessageBarButton>Close</MessageBarButton>
-								</div>
-							}
 							messageBarType={MessageBarType.success}
 							isMultiline={false}>
 							<IconButton iconProps={{ iconName: 'WifiEthernet' }} title="WifiEthernet" ariaLabel="WifiEthernet" />
-							Application is online
+							Application is {componentState.toLowerCase()}
 						</CustomMessageBar>
+					) : null}
 
-					) : (
-							<CustomMessageBar
-								actions={
-									<div>
-									<MessageBarButton>Close</MessageBarButton>
-									</div>
-								}
-								messageBarType={MessageBarType.warning}
-								isMultiline={false}>
-								<IconButton iconProps={{ iconName: 'WifiWarning4' }} title="WifiWarning4" ariaLabel="WifiWarning4" />
-								Application is offline
-							</CustomMessageBar>
-						)
-					}
-				</Stack>
+          {componentState === ComponentState.Offline ? (
+						<CustomMessageBar
+              messageBarType={MessageBarType.warning}
+              isMultiline={false}>
+              <IconButton iconProps={{ iconName: 'WifiWarning4' }} title="WifiWarning4" ariaLabel="WifiWarning4" />
+              Application is {componentState.toLowerCase()}
+            </CustomMessageBar>
+          ) : null}
+
+          {componentState === ComponentState.Error ? (
+            <CustomMessageBar
+              messageBarType={MessageBarType.error}
+              isMultiline={false}>
+              <IconButton iconProps={{ iconName: 'ErrorBadge' }} title="ErrorBadge" ariaLabel="ErrorBadge" />
+              Application is in {componentState.toLowerCase()} state
+            </CustomMessageBar>
+          ) : null}
+
+          {componentState === ComponentState.Syncing ? (
+            <CustomMessageBar
+              messageBarType={MessageBarType.warning}
+              isMultiline={false}>
+              <IconButton iconProps={{ iconName: 'Sync' }} title="Sync" ariaLabel="Sync" />
+              Application is {componentState.toLowerCase()}
+            </CustomMessageBar>
+          ) : null}
+        
 			</Container>
 		)
 	},
@@ -63,11 +66,10 @@ export const NetworkStatusBar: React.FC = memo(
 
 const Container = styled.div`
 	margin-left: ${({ theme }: { theme: PartialTheme }) => theme.spacing?.l2};
-	margin-right: 50px;
 `
 
 const CustomMessageBar = styled(MessageBar)`
-	width: 80%;
-	margin-left: 40%;
-	margin-right: 40%;
+	width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
