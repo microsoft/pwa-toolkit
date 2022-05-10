@@ -15,7 +15,7 @@ type Application {
 
 type Mutation {
   createNote(content: String, title: String!): Note!
-  editNote(content: String, id: String!): Note!
+  editNote(content: String, title: String!): Note!
 }
 
 type Note {
@@ -37,6 +37,6 @@ type Note {
 
 type Query {
   application: Application!
-  note(id: String!): Note
+  note(title: String!): Note
   notes: [Note!]!
 }

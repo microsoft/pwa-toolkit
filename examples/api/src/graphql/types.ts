@@ -101,13 +101,13 @@ export interface NexusGenArgTypes {
     editNote: {
       // args
       content?: string | null // String
-      id: string // String!
+      title: string // String!
     }
   }
   Query: {
     note: {
       // args
-      id: string // String!
+      title: string // String!
     }
   }
 }

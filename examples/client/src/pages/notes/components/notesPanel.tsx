@@ -52,7 +52,7 @@ const NotesPanel: FC = function NotesPanel() {
   const Links = useMemo(() => {
     return notes.map((note) => {
       return (
-        <StyledLink theme={theme} to={note.id} key={note.id}>
+        <StyledLink theme={theme} to={note.title} key={note.title}>
           {note.title}
         </StyledLink>
       )
@@ -67,7 +67,7 @@ const NotesPanel: FC = function NotesPanel() {
 
   useEffect(() => {
     if (notes.length > 0 && location.pathname === '/') {
-      navigate(notes[0].id)
+      navigate(notes[0].title)
     }
   }, [notes, notes.length, location, navigate])
 

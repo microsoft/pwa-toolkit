@@ -38,7 +38,7 @@ export const Query = queryType({
     t.field('note', {
       type: 'Note',
       args: {
-        id: nonNull(stringArg()),
+        title: nonNull(stringArg()),
       },
       async resolve(source, args, { dataSources /*, user, authError */ }) {
         // if (user == null) {
@@ -46,7 +46,7 @@ export const Query = queryType({
         // }
         const note = await dataSources.prisma.note.findUnique({
           where: {
-            id: args.id,
+            title: args.title
           },
         })
         // if (note === null) {

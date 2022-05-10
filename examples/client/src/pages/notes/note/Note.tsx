@@ -30,8 +30,8 @@ const StyledButton = styled(PrimaryButton)`
 `
 
 const noteQuery = gql`
-  query Note($id: String!) {
-    note(id: $id) {
+  query Note($title: String!) {
+    note(title: $title) {
       id
       title
       content
@@ -63,13 +63,13 @@ const NotePage: FC = function NotePage() {
   const [errorMessage, setErrorMessage] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
-  const { noteId } = useParams()
+  const { noteTitle } = useParams()
   const [gqlQuery] = useState(noteQuery)
   const queryVariables = useMemo(() => {
     return {
-      id: noteId,
+      title: noteTitle,
     }
-  }, [noteId])
+  }, [noteTitle])
   const [res, requestNoteErrors] = useRequest<{ note?: API.Note }>(
     gqlQuery,
     queryVariables,
@@ -81,7 +81,7 @@ const NotePage: FC = function NotePage() {
         setTitle(res.note.title ?? '')
         setContent(res.note.content ?? '')
       } else {
-        setErrorMessage(`404. Cannot locate note ${noteId ?? ''}`)
+        setErrorMessage(`404. Cannot locate note ${noteTitle ?? ''}`)
         setComponentState(ComponentState.Error)
       }
     }
@@ -99,7 +99,7 @@ const NotePage: FC = function NotePage() {
     requestNoteErrors,
     setErrorMessage,
     setComponentState,
-    noteId,
+    noteTitle,
   ])
 
   useEffect(() => {
@@ -127,7 +127,7 @@ const NotePage: FC = function NotePage() {
       setComponentState(ComponentState.Saving)
       try {
         await gqlClient.request<{ editNote: API.Note }>(noteMutation, {
-          id: noteId,
+          title: noteTitle,
           content: content,
         })
         setComponentState(ComponentState.Waiting)
@@ -140,7 +140,7 @@ const NotePage: FC = function NotePage() {
         setComponentState(ComponentState.Error)
       }
     },
-    [setComponentState, noteId, content],
+    [setComponentState, noteTitle, content],
   )
 
   return (

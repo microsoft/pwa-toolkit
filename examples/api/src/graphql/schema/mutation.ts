@@ -33,7 +33,7 @@ export const Mutation = mutationType({
     t.nonNull.field('editNote', {
       type: 'Note',
       args: {
-        id: nonNull(stringArg()),
+        title: nonNull(stringArg()),
         content: stringArg(),
       },
       async resolve(parent, args, { dataSources /*, user */ }) {
@@ -42,18 +42,18 @@ export const Mutation = mutationType({
         // }
         const note = await dataSources.prisma.note.findUnique({
           where: {
-            id: args.id,
+            title: args.title,
           },
         })
         if (note === null) {
-          throw new UserInputError(`Note ${args.id} does not exist.`)
+          throw new UserInputError(`Note ${args.title} does not exist.`)
         }
         // if (user.id !== note.authorId) {
         //   throw new ForbiddenError('Unauthorized')
         // }
         return await dataSources.prisma.note.update({
           where: {
-            id: args.id,
+            title: args.title,
           },
           data: {
             content: args.content,
