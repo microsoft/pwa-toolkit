@@ -60,6 +60,7 @@ const NotePage: FC = function NotePage() {
   const [componentState, setComponentState] = useState<ComponentState>(
     ComponentState.Waiting,
   )
+
   const [errorMessage, setErrorMessage] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')

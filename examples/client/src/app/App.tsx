@@ -5,7 +5,9 @@
 import { createTheme, ThemeProvider } from '@fluentui/react'
 import React, { FC, memo } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-
+import {
+  RecoilRoot,
+} from 'recoil';
 // import { AuthProvider } from '../components/authProvider'
 import { NetworkCheckProvider } from '../components/networkCheckProvider'
 import { ReplayOfflineRequestsProvider } from '../components/replayOfflineRequestsProvider'
@@ -22,17 +24,19 @@ const themeDivStyles = {
 const App: FC = function App() {
   return (
     <React.StrictMode>
-      <BrowserRouter>
-        <ThemeProvider style={themeDivStyles} theme={theme}>
-          {/* <AuthProvider tokenProvider={tokenProvider}> */}
-          <NetworkCheckProvider url="/health-check" interval={10 * 1000}>
-            <ReplayOfflineRequestsProvider>
-              <Routes />
-            </ReplayOfflineRequestsProvider>
-          </NetworkCheckProvider>
-          {/* </AuthProvider> */}
-        </ThemeProvider>
-      </BrowserRouter>
+      <RecoilRoot>
+        <BrowserRouter>
+          <ThemeProvider style={themeDivStyles} theme={theme}>
+            {/* <AuthProvider tokenProvider={tokenProvider}> */}
+            <NetworkCheckProvider url="/health-check" interval={10 * 1000}>
+              <ReplayOfflineRequestsProvider>
+                <Routes />
+              </ReplayOfflineRequestsProvider>
+            </NetworkCheckProvider>
+            {/* </AuthProvider> */}
+          </ThemeProvider>
+        </BrowserRouter>
+      </RecoilRoot>
     </React.StrictMode>
   )
 }
