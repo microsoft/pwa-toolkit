@@ -97,7 +97,7 @@ const CreateNotePage: FC = function CreateNotePage() {
             content,
           },
         )
-        navigate(`/${results.createNote.id}`)
+        navigate(`/${results.createNote.title}`)
         setComponentState(ComponentState.Waiting)
       } catch (ex: any) {
         const errorMessage =
